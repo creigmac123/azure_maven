@@ -12,14 +12,7 @@ pool:
 variables:
 - name: one
   value: initialValue 
-stages:
-- stage: string  # name of the stage, A-Z, a-z, 0-9, and underscore
-  displayName: string  # friendly name to display in the UI
-  dependsOn: string | [ string ]
-  condition: string
-  pool: string | pool
-  variables: { string: string } | [ variable | variableReference ] 
-  jobs: [ job | templateReference]
+
 steps:
   - script: |
       echo ${{ variables.one }} # outputs initialValue
