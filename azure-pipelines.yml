@@ -9,20 +9,31 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-name: CI
-
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    testRunTitle: 'test'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    mavenVersionOption: 'Default'
-    mavenOptions: '-Xmx3072m'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
-    checkStyleRunAnalysis: true
+stages:
+  
+  - stage: Buildit
+    jobs:  
+    - deployment: VMDeploy
+      displayName: web
+      environment:
+        name:  VMenv
+        resourceType: VirtualMachine
+        tags: web1
+      strategy:
+        runOnce:
+          deploy:    
+            steps:
+            - task: Maven@3
+              inputs:
+                mavenPomFile: 'pom.xml'
+                publishJUnitResults: true
+                testResultsFiles: '**/surefire-reports/TEST-*.xml'
+                testRunTitle: 'test'
+                javaHomeOption: 'JDKVersion'
+                jdkVersionOption: '1.8'
+                mavenVersionOption: 'Default'
+                mavenOptions: '-Xmx3072m'
+                mavenAuthenticateFeed: false
+                effectivePomSkip: false
+                sonarQubeRunAnalysis: false
+                checkStyleRunAnalysis: true
