@@ -15,7 +15,7 @@ stages:
     jobs:  
     - deployment: VMDeploy
       displayName: web
-      environment:
+      environment: 
         name:  VMenv
         resourceType: VirtualMachine
         tags: web1
