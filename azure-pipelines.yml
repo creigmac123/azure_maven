@@ -17,8 +17,8 @@ stages:
       displayName: web
       environment: 
         name:  dev
-        resourceType: VirtualMachine
-        tags: web1
+        resourceType: ubuntu-latest
+        
       strategy:
         runOnce:
           deploy:    
