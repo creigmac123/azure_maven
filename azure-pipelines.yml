@@ -16,7 +16,7 @@ stages:
     - deployment: VMDeploy
       displayName: web
       environment: 
-        name:  VMenv
+        name:  dev
         resourceType: VirtualMachine
         tags: web1
       strategy:
